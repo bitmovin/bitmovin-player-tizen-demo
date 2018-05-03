@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/TizenBitmovinPlayerAppMode" version="1.0.0" viewmodes="maximized">
+    <tizen:allow-navigation>demo.bitmovin.com bitmovin-a.akamaihd.net fonts.googleapis.com</tizen:allow-navigation>
+    <tizen:application id="sMulUBHvPv.TizenBitmovinPlayerAppMode" package="sMulUBHvPv" required_version="2.1"/>
+    <content src="index.html"/>
+    <tizen:content-security-policy>script-src 'self' 'unsafe-inline' https://bitmovin-a.akamaihd.net</tizen:content-security-policy>
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
+    <icon src="bitmovin-icon.png"/>
+    <name>TizenBitmovinPlayerAppMode</name>
+    <tizen:privilege name="http://tizen.org/privilege/content.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.channel"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.display"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.window"/>
+    <tizen:profile name="tv-samsung"/>
+    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+</widget>
