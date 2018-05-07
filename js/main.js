@@ -27,6 +27,13 @@ function setupPlayer() {
 		// Error!
 		console.log("Error while creating bitmovin player instance");
 	});
+	
+	player.addEventHandler(bitmovin.player.EVENT.ON_WARNING, function(data){
+        console.log("On Warning: "+JSON.stringify(data))
+    });
+	player.addEventHandler(bitmovin.player.EVENT.ON_ERROR, function(data){
+        console.log("On Error: "+JSON.stringify(data))
+    });
 }
 
 function setupControllerEvents() {

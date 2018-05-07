@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/TizenBitmovinPlayerAppMode" version="1.0.0" viewmodes="maximized">
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/TizenBitmovinPlayerAppMode" version="1.0.0" viewmodes="maximized">
     <tizen:allow-navigation>demo.bitmovin.com bitmovin-a.akamaihd.net fonts.googleapis.com</tizen:allow-navigation>
-    <tizen:application id="sMulUBHvPv.TizenBitmovinPlayerAppMode" package="sMulUBHvPv" required_version="2.1"/>
+    <tizen:application id="sMulUBHvPv.TizenBitmovinPlayerAppMode" package="sMulUBHvPv" required_version="2.3"/>
     <content src="index.html"/>
     <tizen:content-security-policy>script-src 'self' 'unsafe-inline' https://bitmovin-a.akamaihd.net</tizen:content-security-policy>
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
