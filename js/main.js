@@ -7,7 +7,10 @@ function setupPlayer() {
 	var conf = {
 		key : "<YOUR_PLAYER_KEY>",
 		source : {
-			dash : "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
+			// AVC Stream
+			dash : "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+			// HEVC Stream
+			//dash : "https://bitmovin-a.akamaihd.net/content/multi-codec/hevc/stream.mpd"
 		},
 		playback : {
 			autoplay : true
