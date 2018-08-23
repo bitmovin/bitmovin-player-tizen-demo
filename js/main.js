@@ -8,9 +8,20 @@ function setupPlayer() {
 		key : "<YOUR_PLAYER_KEY>",
 		source : {
 			// AVC Stream
-			dash : "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+			//dash : "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
 			// HEVC Stream
 			//dash : "https://bitmovin-a.akamaihd.net/content/multi-codec/hevc/stream.mpd"
+			
+			//DRM AVC Stream
+		    dash: 'https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd',
+		    drm: {
+		      widevine: {
+		        LA_URL: 'https://widevine-proxy.appspot.com/proxy'
+		      },
+		      playready: {
+		        LA_URL: 'https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&#038;ContentKey=EAtsIJQPd5pFiRUrV9Layw=='
+		      }
+		    }
 		},
 		playback : {
 			autoplay : true
