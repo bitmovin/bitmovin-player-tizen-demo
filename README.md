@@ -15,9 +15,6 @@ Make sure to enable `file_protocol` and set your `app_id` in the `tweaks` sectio
 ```
 var conf = {
 	key : "<YOUR_PLAYER_KEY>",
-	source : {
-		dash: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
-	},
 	playback : {
 		autoplay : true
 	},
