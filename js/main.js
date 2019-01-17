@@ -4,15 +4,27 @@ window.onload = function() {
 }
 
 function setupPlayer() {
+
+	// add all necessary (and loaded) modules to the player core
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.polyfill.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-bitmovin'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-mp4'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.mserenderer.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.abr.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.drm.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.xml.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.dash.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
+	
 	var conf = {
 		key : "YOUR PLAYER KEY",
 		playback : {
 			autoplay : true
 		},
 		tweaks : {
-			max_buffer_level : 30,
 			file_protocol : true,
-			app_id : "YOUR_APP_ID"
+			app_id : "YOUR_APP_ID",
+			BACKWARD_BUFFER_PURGE_INTERVAL: 10,
 		},
 		analytics: {
 		    key: 'YOUR ANALYTICS KEY',
@@ -41,7 +53,8 @@ function setupPlayer() {
 		
 
 	var container = document.getElementById('player');
-	var player = new bitmovin.player.Player(container, conf);
+	// expose on window object for the key controller event handlers
+	window.player = new bitmovin.player.core.Player(container, conf);
 	
 	player.load(source).then(function(value) {
 		// Success
@@ -51,10 +64,10 @@ function setupPlayer() {
 		console.log("Error while creating bitmovin player instance");
 	});
 	
-	player.on(bitmovin.player.PlayerEvent.OnWarning, function(data){
+	player.on(bitmovin.player.core.PlayerEvent.OnWarning, function(data){
         console.log("On Warning: "+JSON.stringify(data))
     });
-	player.on(bitmovin.player.PlayerEvent.OnError, function(data){
+	player.on(bitmovin.player.core.PlayerEvent.OnError, function(data){
         console.log("On Error: "+JSON.stringify(data))
     });
 }
