@@ -26,6 +26,16 @@ function setupPlayer() {
 			app_id : "YOUR_APP_ID",
 			BACKWARD_BUFFER_PURGE_INTERVAL: 10,
 		},
+		buffer: {
+			[bitmovin.player.core.MediaType.Video]: {
+				[bitmovin.player.core.BufferType.ForwardDuration]: 30,
+				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
+			},
+			[bitmovin.player.core.MediaType.Audio]: {
+				[bitmovin.player.core.BufferType.ForwardDuration]: 30,
+				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
+			},
+		},
 		analytics: {
 		    key: 'YOUR ANALYTICS KEY',
 		    videoId: 'YOUR VIDEO ID',
@@ -59,10 +69,6 @@ function setupPlayer() {
 	player.load(source).then(function(value) {
 		// Success
 		console.log("Successfully created bitmovin player instance");
-		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.BackwardDuration, 10, bitmovin.player.core.MediaType.Video);
-		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.ForwardDuration, 30, bitmovin.player.core.MediaType.Video);
-		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.BackwardDuration, 10, bitmovin.player.core.MediaType.Audio);
-		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.ForwardDuration, 30, bitmovin.player.core.MediaType.Audio);
 	}, function(reason) {
 		// Error!
 		console.log("Error while creating bitmovin player instance");
