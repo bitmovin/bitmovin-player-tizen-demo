@@ -59,6 +59,10 @@ function setupPlayer() {
 	player.load(source).then(function(value) {
 		// Success
 		console.log("Successfully created bitmovin player instance");
+		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.BackwardDuration, 10, bitmovin.player.core.MediaType.Video);
+		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.ForwardDuration, 30, bitmovin.player.core.MediaType.Video);
+		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.BackwardDuration, 10, bitmovin.player.core.MediaType.Audio);
+		player.buffer.setTargetLevel(bitmovin.player.core.BufferType.ForwardDuration, 30, bitmovin.player.core.MediaType.Audio);
 	}, function(reason) {
 		// Error!
 		console.log("Error while creating bitmovin player instance");
