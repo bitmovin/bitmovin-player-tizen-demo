@@ -1,3 +1,5 @@
+var player;
+
 window.onload = function() {
 	setupPlayer();
 	setupControllerEvents();
@@ -41,7 +43,7 @@ function setupPlayer() {
 		
 
 	var container = document.getElementById('player');
-	var player = new bitmovin.player.Player(container, conf);
+	player = new bitmovin.player.Player(container, conf);
 	
 	player.load(source).then(function(value) {
 		// Success
