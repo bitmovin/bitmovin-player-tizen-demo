@@ -12,7 +12,7 @@ function setupPlayer() {
 		tweaks : {
 			max_buffer_level : 30,
 			file_protocol : true,
-			app_id : "YOUR_APP_ID"
+			app_id : "com.bitmovin.demo.webapp"
 		},
 		analytics: {
 		    key: 'YOUR ANALYTICS KEY',
