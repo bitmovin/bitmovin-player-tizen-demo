@@ -6,17 +6,42 @@ window.onload = function() {
 }
 
 function setupPlayer() {
+
+	// add all necessary (and loaded) modules to the player core
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.polyfill.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-bitmovin'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-mp4'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-ts'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.mserenderer.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.abr.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.drm.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.xml.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.dash.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.hls.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.tizen.default);
+
 	var conf = {
-		key : "YOUR PLAYER KEY",
+		key : "YOUR_PLAYER_KEY",
 		playback : {
 			autoplay : true
 		},
 		tweaks : {
-			max_buffer_level : 30,
 			file_protocol : true,
-			app_id : "com.bitmovin.demo.webapp"
+			app_id : "com.bitmovin.demo.webap",
+			BACKWARD_BUFFER_PURGE_INTERVAL: 10
 		},
-		analytics: {
+		buffer: {
+			[bitmovin.player.core.MediaType.Video] : {
+				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
+				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
+			},
+			[bitmovin.player.core.MediaType.Audio]: {
+				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
+				[bitmovin.player.core.BufferType.BackwardDuration] : 10,
+			},
+		},
+		analytics : {
 		    key: 'YOUR ANALYTICS KEY',
 		    videoId: 'YOUR VIDEO ID',
 		    title: 'A descriptive video title'
@@ -34,16 +59,14 @@ function setupPlayer() {
 		drm: {
 			widevine: {
 		        LA_URL: 'https://widevine-proxy.appspot.com/proxy'
-		    },
-		    playready: {
-		        LA_URL: 'https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&#038;ContentKey=EAtsIJQPd5pFiRUrV9Layw=='
 		    }
 		}
 	}
 		
 
 	var container = document.getElementById('player');
-	player = new bitmovin.player.Player(container, conf);
+
+	player = new bitmovin.player.core.Player(container, conf);
 	
 	player.load(source).then(function(value) {
 		// Success
@@ -53,11 +76,12 @@ function setupPlayer() {
 		console.log("Error while creating bitmovin player instance");
 	});
 	
-	player.on(bitmovin.player.PlayerEvent.OnWarning, function(data){
+	player.on(bitmovin.player.core.PlayerEvent.OnWarning, function(data) {
         console.log("On Warning: "+JSON.stringify(data))
     });
-	player.on(bitmovin.player.PlayerEvent.OnError, function(data){
-        console.log("On Error: "+JSON.stringify(data))
+	
+	player.on(bitmovin.player.core.PlayerEvent.OnError, function(data) {
+        console.log("On Error: "+JSON.stringify(data));
     });
 }
 
