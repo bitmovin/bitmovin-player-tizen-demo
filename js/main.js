@@ -9,15 +9,18 @@ function setupPlayer() {
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.polyfill.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-bitmovin'].default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-mp4'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-ts'].default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.mserenderer.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.abr.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.drm.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.xml.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.dash.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.hls.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
-	
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.tizen.default);
+
 	var conf = {
-		key : "YOUR PLAYER KEY",
+		key : "YOUR_PLAYER_KEY",
 		playback : {
 			autoplay : true
 		},
@@ -26,17 +29,17 @@ function setupPlayer() {
 			app_id : "YOUR_APP_ID",
 			BACKWARD_BUFFER_PURGE_INTERVAL: 10,
 		},
-		buffer: {
-			[bitmovin.player.core.MediaType.Video]: {
-				[bitmovin.player.core.BufferType.ForwardDuration]: 30,
+		buffer : {
+			[bitmovin.player.core.MediaType.Video] : {
+				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
 				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
 			},
 			[bitmovin.player.core.MediaType.Audio]: {
-				[bitmovin.player.core.BufferType.ForwardDuration]: 30,
-				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
+				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
+				[bitmovin.player.core.BufferType.BackwardDuration] : 10,
 			},
 		},
-		analytics: {
+		analytics : {
 		    key: 'YOUR ANALYTICS KEY',
 		    videoId: 'YOUR VIDEO ID',
 		    title: 'A descriptive video title'
@@ -54,9 +57,6 @@ function setupPlayer() {
 		drm: {
 			widevine: {
 		        LA_URL: 'https://widevine-proxy.appspot.com/proxy'
-		    },
-		    playready: {
-		        LA_URL: 'https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&#038;ContentKey=EAtsIJQPd5pFiRUrV9Layw=='
 		    }
 		}
 	}
