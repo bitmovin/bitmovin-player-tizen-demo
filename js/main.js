@@ -1,3 +1,5 @@
+var player;
+
 window.onload = function() {
 	setupPlayer();
 	setupControllerEvents();
@@ -26,10 +28,10 @@ function setupPlayer() {
 		},
 		tweaks : {
 			file_protocol : true,
-			app_id : "YOUR_APP_ID",
-			BACKWARD_BUFFER_PURGE_INTERVAL: 10,
+			app_id : "com.bitmovin.demo.webap",
+			BACKWARD_BUFFER_PURGE_INTERVAL: 10
 		},
-		buffer : {
+		buffer: {
 			[bitmovin.player.core.MediaType.Video] : {
 				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
 				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
@@ -63,8 +65,8 @@ function setupPlayer() {
 		
 
 	var container = document.getElementById('player');
-	// expose on window object for the key controller event handlers
-	window.player = new bitmovin.player.core.Player(container, conf);
+
+	player = new bitmovin.player.core.Player(container, conf);
 	
 	player.load(source).then(function(value) {
 		// Success
@@ -74,11 +76,12 @@ function setupPlayer() {
 		console.log("Error while creating bitmovin player instance");
 	});
 	
-	player.on(bitmovin.player.core.PlayerEvent.OnWarning, function(data){
+	player.on(bitmovin.player.core.PlayerEvent.OnWarning, function(data) {
         console.log("On Warning: "+JSON.stringify(data))
     });
-	player.on(bitmovin.player.core.PlayerEvent.OnError, function(data){
-        console.log("On Error: "+JSON.stringify(data))
+	
+	player.on(bitmovin.player.core.PlayerEvent.OnError, function(data) {
+        console.log("On Error: "+JSON.stringify(data));
     });
 }
 
