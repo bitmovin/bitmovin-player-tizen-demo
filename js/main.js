@@ -24,7 +24,11 @@ function setupPlayer() {
 	var conf = {
 		key : "YOUR_PLAYER_KEY",
 		playback : {
-			autoplay : true
+			autoplay : true,
+			preferredTech: [
+				{ player: 'html5', streaming: 'hls'},
+				{ player: 'html5', streaming: 'dash'}
+			]
 		},
 		tweaks : {
 			file_protocol : true,
