@@ -23,29 +23,29 @@ function setupPlayer() {
 
 	var conf = {
 		key : "YOUR_PLAYER_KEY",
-		playback : {
-			autoplay : true,
+		playback: {
+			autoplay: true,
 			preferredTech: [
 				{ player: 'html5', streaming: 'hls'},
 				{ player: 'html5', streaming: 'dash'}
 			]
 		},
-		tweaks : {
-			file_protocol : true,
-			app_id : "com.bitmovin.demo.webap",
+		tweaks: {
+			file_protocol: true,
+			app_id: "com.bitmovin.demo.webap",
 			BACKWARD_BUFFER_PURGE_INTERVAL: 10
 		},
 		buffer: {
-			[bitmovin.player.core.MediaType.Video] : {
-				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
-				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
+			video: {
+				forwardduration: 30,
+				backwardduration: 10,
 			},
-			[bitmovin.player.core.MediaType.Audio]: {
-				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
-				[bitmovin.player.core.BufferType.BackwardDuration] : 10,
+			audio: {
+				forwardduration: 30,
+				backwardduration: 10,
 			},
 		},
-		analytics : {
+		analytics: {
 		    key: 'YOUR ANALYTICS KEY',
 		    videoId: 'YOUR VIDEO ID',
 		    title: 'A descriptive video title'
