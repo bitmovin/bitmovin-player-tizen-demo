@@ -33,10 +33,6 @@ function setupPlayer() {
 		key : "YOUR_PLAYER_KEY",
 		playback : {
 			autoplay : true,
-			preferredTech: [
-				{ player: 'html5', streaming: 'hls'},
-				{ player: 'html5', streaming: 'dash'}
-			]
 		},
 		tweaks : {
 			file_protocol : true,
