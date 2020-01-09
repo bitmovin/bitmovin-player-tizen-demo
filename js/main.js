@@ -40,12 +40,11 @@ function setupPlayer() {
 			BACKWARD_BUFFER_PURGE_INTERVAL: 10,
             DWORD_BASE_MEDIA_DECODE_TIMESTAMPS: true
 		},
-		},
 		analytics : {
 		    key: 'YOUR ANALYTICS KEY',
 		    videoId: 'YOUR VIDEO ID',
 		    title: 'A descriptive video title'
-		  }
+	    },
 		buffer: bufferConfig,
 	};
 	
