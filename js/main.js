@@ -57,9 +57,9 @@ function setupPlayer() {
 		//DRM AVC Stream
 		dash: 'https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd',
 		drm: {
-			widevine: {
-		        LA_URL: 'https://widevine-proxy.appspot.com/proxy'
-		    }
+			// widevine support is only acceptable from Tizen2017 onward, use playready instead
+			// widevine: { LA_URL: 'https://widevine-proxy.appspot.com/proxy' }
+			playready: { utf8message: true, plaintextChallenge: true, headers: { 'Content-Type': 'text/xml' } },
 		}
 	}
 		
