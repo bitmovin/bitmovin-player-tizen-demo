@@ -21,6 +21,14 @@ function setupPlayer() {
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.tizen.default);
 
+	
+	var bufferConfig = {};
+	var bufferLevels = {};
+	bufferLevels[bitmovin.player.core.BufferType.ForwardDuration] = 30;
+	bufferLevels[bitmovin.player.core.BufferType.BackwardDuration] = 10,
+	bufferConfig[bitmovin.player.core.MediaType.Video] = bufferLevels;
+	bufferConfig[bitmovin.player.core.MediaType.Audio] = bufferLevels;
+	
 	var conf = {
 		key : "YOUR_PLAYER_KEY",
 		playback : {
@@ -35,21 +43,13 @@ function setupPlayer() {
 			app_id : "com.bitmovin.demo.webap",
 			BACKWARD_BUFFER_PURGE_INTERVAL: 10
 		},
-		buffer: {
-			[bitmovin.player.core.MediaType.Video] : {
-				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
-				[bitmovin.player.core.BufferType.BackwardDuration]: 10,
-			},
-			[bitmovin.player.core.MediaType.Audio]: {
-				[bitmovin.player.core.BufferType.ForwardDuration] : 30,
-				[bitmovin.player.core.BufferType.BackwardDuration] : 10,
-			},
 		},
 		analytics : {
 		    key: 'YOUR ANALYTICS KEY',
 		    videoId: 'YOUR VIDEO ID',
 		    title: 'A descriptive video title'
 		  }
+		buffer: bufferConfig,
 	};
 	
 	var source = {
