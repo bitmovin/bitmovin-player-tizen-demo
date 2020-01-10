@@ -7,6 +7,8 @@
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
     <icon src="bitmovin-icon.png"/>
     <name>TizenBitmovinPlayerAppMode</name>
+    <tizen:privilege name="http://developer.samsung.com/privilege/drmplay"/>
+    <tizen:privilege name="http://tizen.org/privilege/drmplay"/>
     <tizen:privilege name="http://tizen.org/privilege/content.write"/>
     <tizen:privilege name="http://tizen.org/privilege/content.read"/>
     <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
