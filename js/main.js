@@ -18,6 +18,7 @@ function setupPlayer() {
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.xml.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.dash.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.hls.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.crypto.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.tizen.default);
 
