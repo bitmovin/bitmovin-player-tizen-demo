@@ -3,7 +3,7 @@
     <tizen:allow-navigation>demo.bitmovin.com bitmovin-a.akamaihd.net fonts.googleapis.com cdn.bitmovin.com</tizen:allow-navigation>
     <tizen:application id="sMulUBHvPv.TizenBitmovinPlayerAppMode" package="sMulUBHvPv" required_version="2.3"/>
     <content src="index.html"/>
-    <tizen:content-security-policy>script-src 'self' 'unsafe-inline' https://cdn.bitmovin.com/</tizen:content-security-policy>
+    <tizen:content-security-policy>script-src 'self' 'unsafe-inline' https://cdn.bitmovin.com/ blob: data:</tizen:content-security-policy>
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
     <icon src="bitmovin-icon.png"/>
     <name>TizenBitmovinPlayerAppMode</name>
