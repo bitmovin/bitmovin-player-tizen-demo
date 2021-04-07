@@ -10,7 +10,7 @@ This repository contains a sample app that used the Bitmovin HTML5 Player in a T
 5. Run/debug the sample app. If you debug, you will see Chrome developer tools launch. This will enable you to debug, monitor network requests, and execute commands through the javascript console.
 
 ### Notes for developing your own app
-Make sure to enable `file_protocol` and set your `app_id` in the `tweaks` section of your config. Make sure to whitelist the app_id for your player key on https://bitmovin.com/dashboard/
+Make sure to enable `file_protocol` and set your `app_id` in the `tweaks` section of your config. Make sure to allowlist the `app_id` for your player license key on https://bitmovin.com/dashboard/player/licenses/
 
 ```
 var conf = {
