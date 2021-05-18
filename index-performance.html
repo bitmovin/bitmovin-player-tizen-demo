@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Bitmovin player modules -->
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-core.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-polyfill.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-engine-bitmovin.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-engine-native.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-mserenderer.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-abr.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-drm.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-container-mp4.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-container-ts.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-xml.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-dash.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-hls.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-crypto.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-style.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.60.0/modules/bitmovinplayer-tizen.js"></script>
+    <script type="text/javascript" src="https://cdn.bitmovin.com/analytics/web/2/bitmovinanalytics.min.js"></script>
+
+    <script type="text/javascript" src="js/console-to-ws.js"></script>
+</head>
+<div id="my-player"></div>
+<script>
+  	// add all necessary (and load) modules to the player core
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.polyfill.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-bitmovin'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-native'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-mp4'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-ts'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.mserenderer.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.abr.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.drm.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.xml.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.dash.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.hls.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.crypto.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player.tizen.default);
+    bitmovin.player.core.Player.addModule(bitmovin.analytics.PlayerModule);
+
+    var APP_ID = 'com.viu.tv'
+    var config = {
+        "key": "",
+        playback: {
+            autoplay: true,
+            muted: true,
+            preferredTech: [
+				{ player: 'html5', streaming: 'hls' },
+			]
+        },
+        tweaks: {
+			file_protocol: true,
+			app_id: APP_ID,
+			BACKWARD_BUFFER_PURGE_INTERVAL: 10,
+			no_quota_exceeded_adjustment: true,
+            dword_base_media_decode_timestamps: true,
+            // force_base_media_decode_time_rewrite: true
+		},
+		analytics: {
+			key: "",
+			config: {
+				origin: APP_ID, // com.bitmovin.app
+			}
+		}
+    }
+    var pccw_source = {
+        // WORKAROUND CORS LIMITATION - same content as https://dev-drm.ottuat.com/video/Viu_encoded/test2/44af64484d10ac746a41770a2b97593a_Layer4_vod.m3u8 but uploaded onto Bitmovin S3
+        hls: 'https://s3-ap-southeast-1.amazonaws.com/apac.solutions.bitmovin.com/outputs/saravanan/pccw/ss-perf-test/44af64484d10ac746a41770a2b97593a_Layer4_vod.m3u8',
+        analytics: {
+            videoId: '44af64484d10ac746a41770a2b97593a_Layer4_vod',
+            title: 'ss-2016-perf-test'
+        }
+    };
+
+    var tos_source = {
+        hls: 'https://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel-aes.ism/tears-of-steel-aes-audio_eng=128002-video_eng=2200000.m3u8',
+        analytics: {
+            videoId: 'tears-of-steel-aes.ism',
+            title: 'tears-of-steel-aes.ism'
+        }
+    };
+    
+    var container = document.getElementById('my-player');
+    var player = new bitmovin.player.core.Player(container, config);
+    var source = pccw_source; //tos_source;
+
+    player.load(source).then(
+        function () {
+            console.log('Successfully created Bitmovin Player instance');
+        },
+        function (reason) {
+            console.log('Error while creating Bitmovin Player instance');
+        }
+    );
+</script>
+
+</html>
