@@ -6,9 +6,9 @@ This repository contains a sample app that uses the Bitmovin HTML5 Player in a T
 | ----------- | ------------------------------------------------------------------------------------- |
 | context.xml | Contains configuration options, application priviliges and entry points               |
 | index.html  | HTML laying out the structure of the demo and definition of the used player resources |
-| js/main.js  | main JavaScript file our demo application will use                                    |
-| images/     | place for the application logo                                                        |
-| css/        | stylesheets used for making the demo application pretty                               |
+| js/main.js  | Main JavaScript file our demo application will use                                    |
+| images/     | Place for the application logo                                                        |
+| css/        | Stylesheets used for making the demo application pretty                               |
 
 Need some guidance? Check out our tutorial on [how to use the Bitmovin web player on Samsung Tizen TVs](https://bitmovin.com/docs/player/tutorials/getting-started-with-the-web-player-on-samsung-tizen).
 
