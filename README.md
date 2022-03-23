@@ -16,7 +16,7 @@ Need some guidance? Check out our tutorial on [how to use the Bitmovin web playe
 
 1. Download [Tizen Studio](https://developer.tizen.org/development/tizen-studio/download)
 2. Open the sample app with Tizen Studio
-3. Connect your TV Device. This [tutorial](https://developer.samsung.com/tv/develop/getting-started/using-sdk/tv-device) is a good reference
+3. Connect to your TV. This [tutorial](https://developer.samsung.com/tv/develop/getting-started/using-sdk/tv-device) is a good reference
 4. Input your player key into `main.js`
 5. Run/debug the sample app. If you debug, you will see Chrome developer tools launch. This will enable you to debug, monitor network requests, and execute commands through the javascript console.
 
