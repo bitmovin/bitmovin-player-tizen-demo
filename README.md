@@ -6,7 +6,7 @@ This repository contains a sample app that uses the Bitmovin HTML5 Player in a T
 | ----------- | ------------------------------------------------------------------------------------- |
 | context.xml | Contains configuration options, application priviliges and entry points               |
 | index.html  | Html laying out the structure of the demo and definition of the used player resources |
-| js/main.js  | main javascript file our demo applicaiton will use                                    |
+| js/main.js  | main JavaScript file our demo application will use                                    |
 | images/     | place for the application logo                                                        |
 | css/        | stylesheets used for making the demo application pretty                               |
 
