@@ -1,6 +1,6 @@
 # bitmovin-player-tizen-demo
 
-This repository contains a sample app that used the Bitmovin HTML5 Player in a Tizen App. Project structure:
+This repository contains a sample app that uses the Bitmovin HTML5 Player in a Tizen App. Project structure:
 
 | File/Folder | Description                                                                           |
 | ----------- | ------------------------------------------------------------------------------------- |
