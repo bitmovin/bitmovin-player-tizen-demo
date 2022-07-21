@@ -62,7 +62,11 @@ function setupPlayer() {
 			// widevine support is only acceptable from Tizen2017 onward, use playready instead
 			// widevine: { LA_URL: 'https://widevine-proxy.appspot.com/proxy' }
 			playready: { utf8message: true, plaintextChallenge: true, headers: { 'Content-Type': 'text/xml' } },
-		}
+		},
+		progressive: [{
+			url: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4',
+			type: 'video/mp4',
+		}],
 	}
 		
 
