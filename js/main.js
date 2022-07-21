@@ -10,6 +10,7 @@ function setupPlayer() {
 	// add all necessary (and loaded) modules to the player core
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.polyfill.default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-bitmovin'].default);
+	bitmovin.player.core.Player.addModule(window.bitmovin.player['engine-native'].default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-mp4'].default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player['container-ts'].default);
 	bitmovin.player.core.Player.addModule(window.bitmovin.player.mserenderer.default);
