@@ -77,11 +77,11 @@ function setupPlayer() {
 		console.log("Error while creating bitmovin player instance");
 	});
 	
-	player.on(bitmovin.player.core.PlayerEvent.OnWarning, function(data) {
+	player.on(bitmovin.player.core.PlayerEvent.Warning, function(data) {
         console.log("On Warning: "+JSON.stringify(data))
     });
 	
-	player.on(bitmovin.player.core.PlayerEvent.OnError, function(data) {
+	player.on(bitmovin.player.core.PlayerEvent.Error, function(data) {
         console.log("On Error: "+JSON.stringify(data));
     });
 }
