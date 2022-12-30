@@ -61,7 +61,8 @@ function setupPlayer() {
     //  widevine support is only acceptable from Tizen2017 onward, use playready instead
     //  widevine: { LA_URL: 'https://widevine-proxy.appspot.com/proxy' }
       playready: { utf8message: true, plaintextChallenge: true, headers: { 'Content-Type': 'text/xml' } },
-    }
+    },
+    title: 'Art of Motion',
   };
 
   var container = document.getElementById('player');
