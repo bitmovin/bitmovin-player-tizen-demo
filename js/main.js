@@ -46,6 +46,7 @@ function setupPlayer() {
       title: 'A descriptive video title'
     },
     buffer: bufferConfig,
+    ui: false,
   };
 
   var source = {
@@ -66,6 +67,8 @@ function setupPlayer() {
   var container = document.getElementById('player');
 
   player = new bitmovin.player.core.Player(container, conf);
+
+  var uiManager = new bitmovin.playerui.UIFactory.buildDefaultTvUI(player);
 
   player.load(source).then(function(value) {
     // Success
