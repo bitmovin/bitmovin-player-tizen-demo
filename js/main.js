@@ -71,20 +71,14 @@ function setupPlayer() {
 
   var uiManager = new bitmovin.playerui.UIFactory.buildDefaultTvUI(player);
 
-  player.load(source).then(function(value) {
-    // Success
-    console.log("Successfully created bitmovin player instance");
-  }, function(reason) {
-    // Error!
-    console.log("Error while creating bitmovin player instance");
+  player.load(source);
+
+  player.on(bitmovin.player.core.PlayerEvent.Warning, function(data) {
+    console.log("Warning Event: " + JSON.stringify(data));
   });
 
-  player.on(bitmovin.player.core.PlayerEvent.OnWarning, function(data) {
-    console.log("On Warning: "+JSON.stringify(data))
-  });
-
-  player.on(bitmovin.player.core.PlayerEvent.OnError, function(data) {
-    console.log("On Error: "+JSON.stringify(data));
+  player.on(bitmovin.player.core.PlayerEvent.Error, function(data) {
+    console.log("Error Event: " + JSON.stringify(data));
   });
 }
 
