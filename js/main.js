@@ -38,7 +38,6 @@ function setupPlayer() {
       file_protocol : true,
       app_id : "com.bitmovin.demo.webapp",
       BACKWARD_BUFFER_PURGE_INTERVAL: 10,
-      DWORD_BASE_MEDIA_DECODE_TIMESTAMPS: true
     },
     analytics : {
       key: 'YOUR ANALYTICS KEY',
