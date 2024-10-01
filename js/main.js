@@ -1,6 +1,6 @@
 var player;
 
-window.onload = function() {
+window.onload = function () {
   setupPlayer();
   setupControllerEvents();
 }
@@ -22,46 +22,39 @@ function setupPlayer() {
   bitmovin.player.core.Player.addModule(window.bitmovin.player.style.default);
   bitmovin.player.core.Player.addModule(window.bitmovin.player.tizen.default);
 
-  var bufferConfig = {};
-  var bufferLevels = {};
-  bufferLevels[bitmovin.player.core.BufferType.ForwardDuration] = 30;
-  bufferLevels[bitmovin.player.core.BufferType.BackwardDuration] = 10,
-  bufferConfig[bitmovin.player.core.MediaType.Video] = bufferLevels;
-  bufferConfig[bitmovin.player.core.MediaType.Audio] = bufferLevels;
+  // Analytics
+  bitmovin.player.core.Player.addModule(window.bitmovin.analytics.PlayerModule);
 
-  var conf = {
-    key : "YOUR_PLAYER_KEY",
-    playback : {
-      autoplay : true,
-    },
-    tweaks : {
-      file_protocol : true,
-      app_id : "com.bitmovin.demo.webapp",
-      BACKWARD_BUFFER_PURGE_INTERVAL: 10,
-    },
-    analytics : {
-      key: 'YOUR ANALYTICS KEY',
-      videoId: 'YOUR VIDEO ID',
-      title: 'A descriptive video title'
-    },
-    buffer: bufferConfig,
-    ui: false,
-  };
+  const APP_ID = 'com.bitmovin.demo.webapp';
+  const PLAYER_KEY = 'YOUR_PLAYER_KEY';
+
+  const conf = new bitmovin.player.core.util.PlayerConfigBuilder(PLAYER_KEY)
+    .optimizeForPlatform({ appId: APP_ID })
+    .build();
+
+  // disable the default UI
+  conf.ui = false;
+
+  conf.analytics.customUserId = 'my-custom-user-id';
 
   var source = {
     // Non DRM AVC Stream
     //dash : "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
     // HEVC Stream
     //dash : "https://bitmovin-a.akamaihd.net/content/multi-codec/hevc/stream.mpd"
-      
+
     //DRM AVC Stream
     dash: 'https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd',
     drm: {
-    //  widevine support is only acceptable from Tizen2017 onward, use playready instead
-    //  widevine: { LA_URL: 'https://widevine-proxy.appspot.com/proxy' }
+      //  widevine support is only acceptable from Tizen2017 onward, use playready instead
+      //  widevine: { LA_URL: 'https://widevine-proxy.appspot.com/proxy' }
       playready: { utf8message: true, plaintextChallenge: true, headers: { 'Content-Type': 'text/xml' } },
     },
     title: 'Art of Motion',
+    analytics: {
+      videoId: 'YOUR VIDEO ID',
+      title: 'A descriptive video title'
+    }
   };
 
   var container = document.getElementById('player');
@@ -72,11 +65,11 @@ function setupPlayer() {
 
   player.load(source);
 
-  player.on(bitmovin.player.core.PlayerEvent.Warning, function(data) {
+  player.on(bitmovin.player.core.PlayerEvent.Warning, function (data) {
     console.log("Warning Event: " + JSON.stringify(data));
   });
 
-  player.on(bitmovin.player.core.PlayerEvent.Error, function(data) {
+  player.on(bitmovin.player.core.PlayerEvent.Error, function (data) {
     console.log("Error Event: " + JSON.stringify(data));
   });
 }
@@ -86,7 +79,7 @@ function setupControllerEvents() {
   tizen.tvinputdevice.registerKey('ColorF0Red');
 
   // add eventListener for keydown
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     switch (e.keyCode) {
       case tizen.tvinputdevice.getKey('MediaPlayPause').code:
         if (player.isPlaying()) {
