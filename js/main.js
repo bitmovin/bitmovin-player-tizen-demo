@@ -35,6 +35,7 @@ function setupPlayer() {
   // disable the default UI
   conf.ui = false;
 
+  conf.analytics = conf.analytics || {};
   conf.analytics.customUserId = 'my-custom-user-id';
 
   var source = {
@@ -61,7 +62,7 @@ function setupPlayer() {
 
   player = new bitmovin.player.core.Player(container, conf);
 
-  var uiManager = new bitmovin.playerui.UIFactory.buildDefaultTvUI(player);
+  var uiManager = bitmovin.playerui.UIFactory.buildTvUI(player);
 
   player.load(source);
 
